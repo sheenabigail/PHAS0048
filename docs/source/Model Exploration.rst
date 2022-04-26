@@ -1,4 +1,4 @@
-Usage
+Model Exploration
 =====
 
 .. _installation:
