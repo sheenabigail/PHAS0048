@@ -2,6 +2,8 @@ Lifetime Calculation and Photodissociation Cross Sections
 =====
 *Source code developed by Dr Marco Pezzella of the ExoMol group*
 
+Modifiable Batch Execution Files
+---------
 The energy differences at the discontinuities in a stabilization graph were used to calculate lifetime values. To study the effects of varying curve values and parameters (box size and crossing points) on the lifetime value produced several models (Duo inputs) were constructed:
 
 1. `ExoMol\_95Ma\_Shift01ReOr <https://github.com/sheenabigail/PHAS0048/blob/main/supp_code/batch_exec/h-SH_Duo-intensity_95ma_shift01reor.csh>`_
@@ -13,7 +15,7 @@ The energy differences at the discontinuities in a stabilization graph were used
 
 Where these models were named using the convention of [Source of PEC]\_[Source of SOC]\_[Source of Shift]. For models 1-5, The use of 95Ma as a source for the SOC was only exclusive to the (4Sigma_{1/2}-,2Sigma_{1/2}+) coupling, all other spin-orbit coupling values were obtained using the MRCI method by the ExoMol group.
 
-*Using grid that extends from 0.85 - 13.82 Å, while models 1-4 used grid sizes of 0.85 - 6.48Å
+* Using grid that extends from 0.85 - 13.82 Å, while models 1-4 used grid sizes of 0.85 - 6.48Å
 ^^^^^^^^^
 Each of these Duo input files are modifiable as they are used in the following bash script to automate the process of Duo and ExoCross calculations for a range of box sizes.
 
