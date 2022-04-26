@@ -53,7 +53,7 @@ The crossing between PECs from the Duo output were plotted and compared to `refe
 Producing Stabilization Graph
 ---------
 
-To produce the stabilization graph after **do-submit-loop.sh** is done:
+To produce the stabilization graph after **do-submit-duo-loop.sh** is done:
 
 1.	Move states file for that particular model into a separate directory, for example
 
@@ -61,4 +61,19 @@ To produce the stabilization graph after **do-submit-loop.sh** is done:
 
    mkdir sh_v1_200points # creates directory
    mv SH_MRCI*.states /dirpath # moving all states files into directory created in previous line
-2. 
+2. In the directory with the states files, we grep for a specific symmetry
+
+.. literalinclude:: ../../supp_code/bash_plot.sh
+
+3. After copying the directory into a local machine, the `SH_model.R <https://github.com/sheenabigail/PHAS0048/blob/main/supp_code/SH_model.R>`_ code is run
+   :language: bash
+   
+"""
+The script performs the following steps:
+1.	Read the temporary states files with the desired symmetry;
+2.	Create a NxM matrix, with the number of columns equal to the number of states filesa, and the number of rows equal to the length of  the last of the states file (The last file, the one with bigger r_box, has the larger number of states).
+3.	Initialize the matrix with NaNs. It is useful for getting rid of the extra lines when encountered. 
+4.	Store the data inside the matrix, and then perform its transpose. 
+5.	Save each of the matrix column in a different file. It will show how the state changes with the box size.  Save the files using two columns, the first column being the box size and second the state energy. 
+
+"""
