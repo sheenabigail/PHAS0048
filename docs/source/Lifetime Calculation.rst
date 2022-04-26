@@ -100,7 +100,6 @@ Instead of calculating the energy differences by eye, an attempt was made to aut
 
 .. code-block:: python
    :linenos:
-   :emphasize-lines: 3,5
 
    def lifetime_calculator(fname):
        # reads file containing grep for a certain state and symmetry
