@@ -61,14 +61,19 @@ To produce the stabilization graph after **do-submit-duo-loop.sh** is done:
 
    mkdir sh_v1_200points # creates directory
    mv SH_MRCI*.states /dirpath # moving all states files into directory created in previous line
+   
+   For models used in this project, the resulting state files have been compiled in `directories <https://github.com/sheenabigail/PHAS0048/tree/main/supp_code/states%20files>`_ 
+   
 2. In the directory with the states files, we grep for a specific symmetry
 
 .. literalinclude:: ../../supp_code/bash_plot.sh
    :language: bash
    
+   The resulting .states.2 files have been compiled in `directories <https://github.com/sheenabigail/PHAS0048/tree/main/supp_code/r_output>`_
+   
 3. After copying the directory into a local machine, the `SH_model.R <https://github.com/sheenabigail/PHAS0048/blob/main/supp_code/SH_model.R>`_ code is run
 
-   
+ 
 
 *The SH_model.R script performs the following steps:*
 
@@ -84,3 +89,18 @@ To produce the stabilization graph after **do-submit-duo-loop.sh** is done:
 
 4. Using Origin, import the data using Import Multiple ASCII and plot the state energy vs box size.
 
+Plotting 
+---------
+
+The revised PECs and SOCs have been plotted using `Plotting-NOFIT.ipynb <https://github.com/sheenabigail/PHAS0048/blob/main/supp_code/plotting_nb/Plotting-NOFIT.ipynb>`_
+
+[An attempt at] Automated lifetime calculation
+---------
+Instead of calculating the energy differences by eye, an attempt was made to automate the process. By grepping a certain symmetry for the A2Sigma+ from the .states files, and using the following function
+
+.. literalinclude:: ../../supp_code/lifetime_nb/lifetime_calc.ipynb
+   :language: python
+   :linenos:
+   :lines: 31-79
+   
+The average lifetime values obtained using this method are in agreement with those obtained from manual calculation.
