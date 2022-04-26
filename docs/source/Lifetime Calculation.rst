@@ -98,9 +98,56 @@ The revised PECs and SOCs have been plotted using `Plotting-NOFIT.ipynb <https:/
 ---------
 Instead of calculating the energy differences by eye, an attempt was made to automate the process. By grepping a certain symmetry for the A2Sigma+ from the .states files, and using the following function
 
-.. literalinclude:: ../../supp_code/lifetime_nb/lifetime_calc.ipynb
-   :language: python
+.. code-block:: python
    :linenos:
-   :lines: 31-79
+   :emphasize-lines: 3,5
+
+   def lifetime_calculator(fname):
+       # reads file containing grep for a certain state and symmetry
+       df = pd.read_csv(fname)
+       # making a dictionary to contain the states file
+       states_vals = dict(df.values)
+       # taking the energy values
+       evals = np.array(list(states_vals.values()))
+       # counting the no of local minima
+       locmin = len(evals[argrelextrema(evals, np.less)[0]])
+       # counting the no of local maxima
+       locmax = len(evals[argrelextrema(evals, np.greater)[0]])
+       # if the number of local minima = local maxima then calculations can proceed
+       if locmin==locmax:
+           print("Continue")
+           E2= evals[argrelextrema(evals, np.greater)[0]]
+           E1= evals[argrelextrema(evals, np.less)[0]]
+           newdf = pd.DataFrame({'E1' : E1})
+           keyval_E1= []
+           for i in E1:
+               E1key = list(states_vals.keys())[list(states_vals.values()).index(i)]
+               keyval_E1.append(E1key)
+           keyval_E2= []
+           for i in E2:
+               E2key = list(states_vals.keys())[list(states_vals.values()).index(i)]
+               keyval_E2.append(E2key)
+           newdf['E2']=pd.Series(E2)
+           newdf['R1']=pd.Series(keyval_E1)
+           newdf['R2']=pd.Series(keyval_E2)
+           newdf['lifetimes'] = 0.000000000005308838/(0.5*(newdf['E2']-newdf['E1']))
+           print("############INITIAL DATAFRAME############")
+           print(newdf)
+           print("Lifetime Average:",newdf['lifetimes'].mean(),"s")
+           print("Lifetime standard deviation",newdf['lifetimes'].std(),"s")
+           if (newdf[newdf["lifetimes"]>=1e-11].empty) & (newdf[newdf["lifetimes"]<=1e-13].empty): 
+               print("Lifetimes are within picosecond range")
+           else:
+               dropdf = newdf[(newdf["lifetimes"] < 1e-11) & (newdf["lifetimes"] > 1e-13)]
+               print("############AFTER DROPPING############")
+               print(dropdf)
+               print("Lifetime Average:",dropdf['lifetimes'].mean(),"s")
+               print("Lifetime standard deviation",dropdf['lifetimes'].std(),"s")
+       # if they are not equal, this implies number of local minima/local maxima detected incorrectly, 
+       # so the differences in energies and hence the lifetimes need to be calculated manually.
+       else:
+           print("Do calculations manually")
+           print(f"Detected number of local minima:{locmin}")
+           print(f"Detected number of local maxima:{locmax}")
    
 The average lifetime values obtained using this method are in agreement with those obtained from manual calculation.
