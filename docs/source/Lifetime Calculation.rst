@@ -70,7 +70,7 @@ To produce the stabilization graph after **do-submit-duo-loop.sh** is done:
 
    
 
-*The script performs the following steps:*
+*The SH_model.R script performs the following steps:*
 
 *1.	Read the temporary states files with the desired symmetry;*
 
@@ -82,4 +82,5 @@ To produce the stabilization graph after **do-submit-duo-loop.sh** is done:
 
 *5.	Save each of the matrix column in a different file. It will show how the state changes with the box size.  Save the files using two columns, the first column being the box size and second the state energy.*
 
+4. Using Origin, import the data using Import Multiple ASCII and plot the state energy vs box size.
 
