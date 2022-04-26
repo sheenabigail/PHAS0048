@@ -64,9 +64,10 @@ To produce the stabilization graph after **do-submit-duo-loop.sh** is done:
 2. In the directory with the states files, we grep for a specific symmetry
 
 .. literalinclude:: ../../supp_code/bash_plot.sh
-
-3. After copying the directory into a local machine, the `SH_model.R <https://github.com/sheenabigail/PHAS0048/blob/main/supp_code/SH_model.R>`_ code is run
    :language: bash
+   
+3. After copying the directory into a local machine, the `SH_model.R <https://github.com/sheenabigail/PHAS0048/blob/main/supp_code/SH_model.R>`_ code is run
+
    
 
 *The script performs the following steps:*
