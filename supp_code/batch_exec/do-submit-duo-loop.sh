@@ -12,11 +12,6 @@ i=1
 while [ $i -le  $N ];
 do       
 echo $L
-# ./h-SH_Duo-intensity_unshifted.csh  $L $T $Jmax $name
-# ./h-SH_Duo-intensity.csh  $L $T $Jmax $name
-# ./h-SH_Duo-intensity_08brhaho.csh  $L $T $Jmax $name
-# ./h-SH_Duo-intensity_01reor.csh  $L $T $Jmax $name
-# ./h-SH_Duo-intensity_95ma.csh  $L $T $Jmax $name
 # ./h-SH_Duo-intensity_95ma_spinorcomp.csh  $L $T $Jmax $name
 ./h-SH_Duo-intensity_95ma_v2.csh  $L $T $Jmax $name
 # ./h-SH_Duo-intensity_95ma_shift08brhaho.csh  $L $T $Jmax $name
